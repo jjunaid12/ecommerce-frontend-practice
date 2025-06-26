@@ -1,6 +1,11 @@
 <!-- HOMEVIEW -->
 <script setup lang="ts">
   const { data } = await useFetch('/api/products');
+
+  // move this
+  const convertToDollar = (cents: number) => {
+    return cents / 100;
+  }
 </script>
 
 <template>
@@ -15,7 +20,7 @@
             <div class="group relative block overflow-hidden h-[100%] flex flex-col justify-between">
               <RouterLink :to="`products/${product.id}`">
                 <img
-                  :src="product.img"
+                  :src="product.image"
                   class="h-50 w-full object-contain"
                 />
               </RouterLink>
@@ -23,7 +28,7 @@
               <div class="relative bg-white p-6">
                 <h3 class="text-gray-500 text-xs title-font mb-1">{{ product.category }}</h3>
                 <h3 class="mt-1.5 text-lg font-medium text-gray-900">{{ product.name }}</h3>
-                <p class="text-gray-700">${{ product.price }}</p>
+                <p class="text-gray-700">${{ convertToDollar(product.priceCents) }}</p>
 
                 <div class="mt-4 flex gap-4">
                   <button
