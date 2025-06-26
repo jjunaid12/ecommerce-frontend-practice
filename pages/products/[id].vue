@@ -1,10 +1,9 @@
 <script setup lang="ts">
-  const route = useRoute();
-  const { data } = await useFetch('/api/products');
-  
-  const product = computed(() =>
-    data.value?.find((p) => String(p.id) === String(route.params.id))
-  );
+  import { useProducts } from '~/composables/useProducts';
+
+  const route = useRoute()
+  const { getProductById } = useProducts()
+  const { data: product } = await getProductById(Number(route.params.id))
 
   // move this
   const convertToDollar = (cents: number) => {

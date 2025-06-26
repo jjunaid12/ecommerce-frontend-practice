@@ -1,6 +1,9 @@
 <!-- HOMEVIEW -->
 <script setup lang="ts">
-  const { data } = await useFetch('/api/products');
+  import { useProducts } from '~/composables/useProducts';
+
+  const { getProducts } = useProducts();
+  const { data: products, error } = await getProducts();
 
   // move this
   const convertToDollar = (cents: number) => {
@@ -14,11 +17,11 @@
       <div class="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-8">
         <AppCards
           class="cursor-pointer"
-          v-for="product in data"
+          v-for="product in products"
           :key="product.id"
         >
             <div class="group relative block overflow-hidden h-[100%] flex flex-col justify-between">
-              <RouterLink :to="`products/${product.id}`">
+              <RouterLink :to="`/products/${product.id}`">
                 <img
                   :src="product.image"
                   class="h-50 w-full object-contain"
