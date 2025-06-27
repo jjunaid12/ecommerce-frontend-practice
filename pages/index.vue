@@ -1,18 +1,26 @@
 <!-- HOMEVIEW -->
 <script setup lang="ts">
-  import { useProducts } from '~/composables/useProducts';
+  const Products = useProducts();
+  const { data: products, error } = await Products.getProducts();
 
-  const { getProducts } = useProducts();
-  const { data: products, error } = await getProducts();
+  const showSAddToCartAlert = ref(false);
+  let deleteAlert:any = null;
+  const addToCart = () => {
+    if (deleteAlert) 
+      clearTimeout(deleteAlert);
 
-  // move this
-  const convertToDollar = (cents: number) => {
-    return cents / 100;
-  }
+    showSAddToCartAlert.value = true;
+    
+    deleteAlert = setTimeout(() => {
+      showSAddToCartAlert.value = false;
+      deleteAlert = null;
+    }, 2000);
+  };
 </script>
 
 <template>
   <section class="text-gray-600 body-font">
+    <AppAddToCartAler v-if="showSAddToCartAlert" class="absolute left-1/2 top-0 z-10 transform -translate-x-1/2"/>
     <div class="container px-5 pt-5 pb-20 mx-auto">
       <div class="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-8">
         <AppCards
@@ -25,6 +33,7 @@
                 <img
                   :src="product.image"
                   class="h-50 w-full object-contain"
+                  loading="lazy"
                 />
               </RouterLink>
 
@@ -36,6 +45,7 @@
                 <div class="mt-4 flex gap-4">
                   <button
                     class="block w-full rounded-sm bg-gray-100 px-4 py-3 text-sm font-medium text-gray-900 transition hover:scale-105 cursor-pointer"
+                    @click="addToCart"
                   >
                     Add to Cart
                   </button>

@@ -1,14 +1,7 @@
 <script setup lang="ts">
-  import { useProducts } from '~/composables/useProducts';
-
   const route = useRoute()
   const { getProductById } = useProducts()
   const { data: product } = await getProductById(Number(route.params.id))
-
-  // move this
-  const convertToDollar = (cents: number) => {
-    return cents / 100;
-  }
 </script>
 
 <template>
