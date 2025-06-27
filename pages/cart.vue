@@ -20,22 +20,22 @@
 
 <template>
   <section>
-    <div class="mx-auto max-w-screen-xl px-4 py-4 sm:px-6 lg:px-8 border">
+    <div class="mx-auto max-w-screen-xl px-4 py-4 sm:px-6 lg:px-8">
       <div class="mx-auto max-w-4xl">
         <header class="text-center">
           <h1 class="text-xl font-bold text-gray-900 sm:text-3xl">{{ users!.name }}'s Cart</h1>
         </header>
   
-        <div class="mt-8 border-2 flex">
+        <div class="mt-8 flex gap-4">
           <!-- products in cart -->
-           <div class="flex border flex-1">
-              <div class="border flex-1"> 
+           <div class="flex flex-1">
+              <div class="flex-1"> 
                 <div class="flex ">
                   <img
                     src="/images/products/adults-plain-cotton-tshirt-2-pack-teal.jpg"
                     class="size-30 rounded-sm object-cover"
                   />
-                  <div class="border flex flex-col justify-center">
+                  <div class="flex flex-col justify-center">
                     <h3 class="text-lg text-gray-900">Basic Tee 6-Pack</h3>
 
                     <div class="mt-0.5 space-y-px text-[12px] text-gray-600">
@@ -45,7 +45,7 @@
                   </div>
   
                   <!-- checkout -->
-                  <div class="flex flex-1 items-center justify-end gap-2 border">
+                  <div class="flex flex-1 items-center justify-end gap-2">
                     <form>
                       <label for="Line3Qty" class="sr-only"> Quantity </label>
   
@@ -78,7 +78,7 @@
                 </div>
               </div>
             </div>
-          <div class="mt-8 flex justify-end border-l border-gray-100 pt-8 w-[40%]">
+          <div class="mt-8 flex justify-end border border-gray-300 pt-8 w-[40%]">
             <div class="w-screen max-w-lg space-y-4">
               <div class="space-y-0.5 text-sm text-gray-700">
                 <div class="flex justify-between">
